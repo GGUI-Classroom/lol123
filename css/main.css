@@ -23,9 +23,9 @@ body {
   border-bottom: 2px solid #00ffff;
 }
 
-/* Navbar Logo */
+/* Navbar Logo (slightly larger) */
 .top-bar img.logo {
-  height: 42px;
+  height: 48px; /* increased from 42px */
   transition: 0.2s ease;
   filter: drop-shadow(0 0 6px rgba(0, 255, 255, 0.5));
 }
