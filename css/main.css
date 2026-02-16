@@ -10,7 +10,7 @@ html, body {
   width: 100%;
   height: 100%;
   font-family: 'Orbitron', sans-serif;
-  background: radial-gradient(circle at top, #111 0%, #000 70%);
+  background: radial-gradient(circle at top, #0f141a 0%, #000 70%);
   color: #ffffff;
 }
 
@@ -21,13 +21,14 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(0, 255, 255, 0.3);
-  box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+  background: rgba(0, 255, 255, 0.03);
 }
 
 .top-bar img.logo {
   height: 32px;
-  filter: drop-shadow(0 0 8px #00ffff);
+  /* subtle glow, not nuclear */
+  filter: drop-shadow(0 0 6px rgba(0, 255, 255, 0.5));
 }
 
 .top-bar ul {
@@ -38,27 +39,28 @@ html, body {
 
 .top-bar ul li {
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: 0.25s ease;
 }
 
 .top-bar ul li:hover {
   color: #00ffff;
-  text-shadow: 0 0 12px #00ffff;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
 }
 
 /* ===== Discord Button ===== */
 .discord-btn {
   padding: 8px 18px;
   text-decoration: none;
-  color: #fff;
-  border: 2px solid #fff;
-  box-shadow: 0 0 10px #fff;
+  color: #00ffff;
+  border: 1px solid rgba(0, 255, 255, 0.5);
+  border-radius: 6px;
   transition: 0.25s ease;
 }
 
 .discord-btn:hover {
-  box-shadow: 0 0 20px #fff;
-  transform: translateY(-1px);
+  background: #00ffff;
+  color: #000;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
 }
 
 /* ===== Home Layout ===== */
@@ -69,16 +71,19 @@ html, body {
   align-items: center;
   justify-content: center;
   gap: 12px;
+  text-align: center;
 }
 
+/* Controlled glow only here */
 .site-title {
   font-size: 64px;
   letter-spacing: 4px;
-  text-shadow: 0 0 20px #00ffff;
+  color: #00ffff;
+  text-shadow: 0 0 14px rgba(0, 255, 255, 0.6);
 }
 
 .site-subtitle {
-  opacity: 0.75;
+  opacity: 0.7;
   margin-bottom: 40px;
 }
 
@@ -93,26 +98,27 @@ html, body {
 .nav-card {
   width: 240px;
   height: 160px;
-  border: 2px solid rgba(0, 255, 255, 0.6);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  background: rgba(0, 255, 255, 0.04);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   color: #fff;
-  box-shadow: 0 0 18px rgba(0, 255, 255, 0.4);
-  transition: 0.3s ease;
   border-radius: 16px;
+  transition: 0.25s ease;
 }
 
 .nav-card img {
   width: 48px;
   margin-bottom: 12px;
-  filter: drop-shadow(0 0 10px #00ffff);
+  /* no idle glow */
 }
 
 .nav-card:hover {
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.9);
+  border-color: #00ffff;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
   transform: translateY(-4px);
 }
 
@@ -125,19 +131,19 @@ html, body {
 }
 
 .client-card {
-  background: rgba(0, 0, 0, 0.6);
-  border: 2px solid rgba(0, 255, 255, 0.6);
+  background: rgba(0, 255, 255, 0.04);
+  border: 1px solid rgba(0, 255, 255, 0.2);
   border-radius: 16px;
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  box-shadow: 0 0 18px rgba(0, 255, 255, 0.4);
-  transition: 0.3s ease;
+  transition: 0.25s ease;
 }
 
 .client-card:hover {
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.9);
+  border-color: #00ffff;
+  box-shadow: 0 0 22px rgba(0, 255, 255, 0.5);
   transform: translateY(-4px);
 }
 
@@ -153,37 +159,40 @@ html, body {
 
 .client-card button {
   padding: 8px 16px;
-  border: none;
   border-radius: 12px;
   cursor: pointer;
   transition: 0.25s ease;
   font-weight: bold;
 }
 
+/* Launch Button */
 .launch-btn {
   background-color: #00ffff;
   color: #000;
+  border: none;
 }
 
 .launch-btn:hover {
-  background-color: #00eeee;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
 }
 
+/* Download Button */
 .download-btn {
-  background-color: #111;
+  background-color: transparent;
   color: #00ffff;
-  border: 1px solid #00ffff;
+  border: 1px solid rgba(0, 255, 255, 0.5);
 }
 
 .download-btn:hover {
   background-color: #00ffff;
   color: #000;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
 }
 
 /* ===== Footer ===== */
 .footer {
   text-align: center;
   padding: 12px 0;
-  opacity: 0.5;
+  opacity: 0.4;
   font-size: 12px;
 }
