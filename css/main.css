@@ -1,4 +1,7 @@
-/* Reset */
+/* ========================= */
+/* RESET */
+/* ========================= */
+
 * {
   margin: 0;
   padding: 0;
@@ -6,14 +9,20 @@
   font-family: Arial, sans-serif;
 }
 
-/* Body */
+/* ========================= */
+/* BODY */
+/* ========================= */
+
 body {
   background: #0d1117;
   color: white;
   text-align: center;
 }
 
-/* Top Bar */
+/* ========================= */
+/* TOP BAR */
+/* ========================= */
+
 .top-bar {
   display: flex;
   align-items: center;
@@ -23,9 +32,9 @@ body {
   border-bottom: 2px solid #00ffff;
 }
 
-/* Navbar Logo (slightly larger) */
+/* Navbar Logo */
 .top-bar img.logo {
-  height: 48px; /* increased from 42px */
+  height: 48px;
   transition: 0.2s ease;
   filter: drop-shadow(0 0 6px rgba(0, 255, 255, 0.5));
 }
@@ -103,32 +112,56 @@ body {
   margin-bottom: 8px;
 }
 
+/* ========================= */
+/* NAV GRID (HERO BUTTONS) */
+/* ========================= */
+
 .nav-grid {
-  margin-top: 50px;
+  margin-top: 60px;
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 50px;
 }
+
+/* Improved Clients Card */
 
 .nav-card {
   background: #1f2937;
-  padding: 30px;
-  border-radius: 12px;
+  padding: 40px;
+  border-radius: 16px;
   text-decoration: none;
   color: white;
-  transition: 0.2s ease;
-  width: 140px;
+  transition: 0.25s ease;
+
+  width: 260px;                 /* Bigger card */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-card img {
-  width: 100px;
-  margin-bottom: 15px;
+  width: 180px;                 /* Image fills card properly */
+  height: auto;
+  margin-bottom: 20px;
 }
 
+.nav-card span {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Hover Effects */
+
 .nav-card:hover {
-  transform: translateY(-5px);
-  background: #374151;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+  transform: translateY(-6px);
+  background: #273549;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+}
+
+.nav-card:hover img {
+  transform: scale(1.05);
+  transition: 0.3s ease;
 }
 
 /* ========================= */
@@ -201,7 +234,10 @@ body {
   background: #4b5563;
 }
 
-/* Footer */
+/* ========================= */
+/* FOOTER */
+/* ========================= */
+
 .footer {
   margin-top: 120px;
   padding: 20px;
