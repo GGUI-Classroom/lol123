@@ -15,48 +15,97 @@
     <ul>
       <li onclick="location.href='index.html'">Home</li>
       <li onclick="location.href='clients.html'">Clients</li>
-
     </ul>
     <a class="discord-btn" href="https://discord.gg/2EDdGj2ZQp">Discord</a>
   </div>
 
-  <!-- Page Content Wrapper -->
   <div class="page-content">
-
     <h1 class="page-title">Clients</h1>
 
     <section class="clients-grid">
+
+      <!-- CLIENT CARD -->
       <div class="client-card">
         <h3>Official Eaglercraft</h3>
-        <p>Version 1.17.1 — Vanilla client</p>
+        <span class="version-badge">1.17.1</span>
+        <p>Vanilla client build</p>
+
         <div class="button-group">
-          <button class="launch-btn">Launch</button>
-          <button class="download-btn">Download</button>
+          <button class="launch-btn"
+            onclick="launchClient('https://eaglercrafthub.github.io/assets/clients/EaglercraftX_1.8_u53_Offline_Signed.html')">
+            Launch
+          </button>
+
+          <button class="fullscreen-btn"
+            onclick="launchFullscreen('https://eaglercrafthub.github.io/assets/clients/EaglercraftX_1.8_u53_Offline_Signed.html')">
+            Launch Fullscreen
+          </button>
+
+          <a class="download-btn"
+            href="https://eaglercrafthub.github.io/assets/clients/EaglercraftX_1.8_u53_Offline_Signed.html"
+            download>
+            Download
+          </a>
         </div>
       </div>
 
-      <div class="client-card">
-        <h3>Modded Client</h3>
-        <p>Version 1.17.1 + Mods</p>
-        <div class="button-group">
-          <button class="launch-btn">Launch</button>
-          <button class="download-btn">Download</button>
-        </div>
-      </div>
-
-      <div class="client-card">
-        <h3>Beta Client</h3>
-        <p>Experimental features and updates</p>
-        <div class="button-group">
-          <button class="launch-btn">Launch</button>
-          <button class="download-btn">Download</button>
-        </div>
-      </div>
     </section>
+  </div>
 
+  <!-- CLIENT VIEWER -->
+  <div id="client-section">
+    <div class="viewer-header">
+      <span>Client Running</span>
+      <button class="close-btn" onclick="closeClient()">Close</button>
+    </div>
+
+    <div id="loading-screen">Loading Client...</div>
+
+    <iframe id="client-frame"></iframe>
   </div>
 
   <div class="footer">© 2026 Eclix</div>
+
+<script>
+
+function launchClient(url) {
+  const section = document.getElementById("client-section");
+  const frame = document.getElementById("client-frame");
+  const loader = document.getElementById("loading-screen");
+
+  loader.style.display = "flex";
+  section.style.display = "block";
+  frame.style.opacity = "0";
+
+  frame.src = url;
+
+  frame.onload = () => {
+    loader.style.display = "none";
+    frame.style.opacity = "1";
+  };
+
+  section.scrollIntoView({ behavior: "smooth" });
+}
+
+function launchFullscreen(url) {
+  const section = document.getElementById("client-section");
+  const frame = document.getElementById("client-frame");
+
+  section.style.display = "block";
+  frame.src = url;
+
+  frame.requestFullscreen?.();
+}
+
+function closeClient() {
+  const section = document.getElementById("client-section");
+  const frame = document.getElementById("client-frame");
+
+  frame.src = "";
+  section.style.display = "none";
+}
+
+</script>
 
 </body>
 </html>
