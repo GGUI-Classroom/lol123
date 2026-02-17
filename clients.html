@@ -24,7 +24,6 @@
 
     <section class="clients-grid">
 
-      <!-- CLIENT CARD -->
       <div class="client-card">
         <h3>Official Eaglercraft</h3>
         <span class="version-badge">1.17.1</span>
@@ -37,13 +36,13 @@
           </button>
 
           <button class="fullscreen-btn"
-            onclick="launchFullscreen('https://eaglercrafthub.github.io/assets/clients/EaglercraftX_1.8_u53_Offline_Signed.html')">
-            Launch Fullscreen
+            onclick="launchFullscreen('https://eaglercrafthub.github.io/assets/clients/EaglercraftX_1.8_u53_Offline_Signed.html.html')">
+            Fullscreen
           </button>
 
           <a class="download-btn"
-            href="https://eaglercrafthub.github.io/assets/clients/EaglercraftX_1.8_u53_Offline_Signed.html"
-            download>
+             href="https://eaglercrafthub.github.io/assets/clients/EaglercraftX_1.8_u53_Offline_Signed.html"
+             download>
             Download
           </a>
         </div>
@@ -56,10 +55,13 @@
   <div id="client-section">
     <div class="viewer-header">
       <span>Client Running</span>
-      <button class="close-btn" onclick="closeClient()">Close</button>
+      <button onclick="closeClient()" class="close-btn">Close</button>
     </div>
 
-    <div id="loading-screen">Loading Client...</div>
+    <div id="loading-screen">
+      <div class="spinner"></div>
+      <span>Loading Client...</span>
+    </div>
 
     <iframe id="client-frame"></iframe>
   </div>
@@ -67,16 +69,14 @@
   <div class="footer">© 2026 Eclix</div>
 
 <script>
-
 function launchClient(url) {
   const section = document.getElementById("client-section");
   const frame = document.getElementById("client-frame");
   const loader = document.getElementById("loading-screen");
 
-  loader.style.display = "flex";
   section.style.display = "block";
+  loader.style.display = "flex";
   frame.style.opacity = "0";
-
   frame.src = url;
 
   frame.onload = () => {
@@ -88,13 +88,15 @@ function launchClient(url) {
 }
 
 function launchFullscreen(url) {
-  const section = document.getElementById("client-section");
   const frame = document.getElementById("client-frame");
+  const section = document.getElementById("client-section");
 
   section.style.display = "block";
   frame.src = url;
 
-  frame.requestFullscreen?.();
+  frame.onload = () => {
+    frame.requestFullscreen?.();
+  };
 }
 
 function closeClient() {
@@ -104,7 +106,6 @@ function closeClient() {
   frame.src = "";
   section.style.display = "none";
 }
-
 </script>
 
 </body>
