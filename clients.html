@@ -30,11 +30,13 @@
         <p>Official Client</p>
 
         <div class="button-group">
+          <!-- NEW TAB -->
           <button class="launch-btn"
-            onclick="launchClient('https://eaglercrafthub.github.io/assets/clients/EaglercraftX_1.8_u53_Offline_Signed.html')">
+            onclick="launchNewTab('https://eaglercrafthub.github.io/assets/clients/EaglercraftX_1.8_u53_Offline_Signed.html')">
             Launch
           </button>
 
+          <!-- EMBEDDED FULLSCREEN -->
           <button class="fullscreen-btn"
             onclick="launchFullscreen('https://eaglercrafthub.github.io/assets/clients/EaglercraftX_1.8_u53_Offline_Signed.html')">
             Fullscreen
@@ -54,11 +56,13 @@
         <p>Unofficial Client</p>
 
         <div class="button-group">
+          <!-- NEW TAB -->
           <button class="launch-btn"
-            onclick="launchClient('https://eaglercrafthub.github.io/assets/clients/Eaglercraft_IR_StarLikeClient_0.4.2.html')">
+            onclick="launchNewTab('https://eaglercrafthub.github.io/assets/clients/Eaglercraft_IR_StarLikeClient_0.4.2.html')">
             Launch
           </button>
 
+          <!-- EMBEDDED FULLSCREEN -->
           <button class="fullscreen-btn"
             onclick="launchFullscreen('https://eaglercrafthub.github.io/assets/clients/Eaglercraft_IR_StarLikeClient_0.4.2.html')">
             Fullscreen
@@ -87,7 +91,6 @@
       <span>Loading Client...</span>
     </div>
 
-    <!-- UPGRADED IFRAME -->
     <iframe 
       id="client-frame"
       allow="fullscreen"
@@ -102,35 +105,16 @@
   <div class="footer">© 2026 Eclix</div>
 
 <script>
-function launchClient(url) {
-  const section = document.getElementById("client-section");
-  const frame = document.getElementById("client-frame");
-  const loader = document.getElementById("loading-screen");
 
-  section.style.display = "block";
-  loader.style.display = "flex";
-  frame.style.opacity = "0";
-  frame.src = url;
-
-  frame.onload = () => {
-    loader.style.display = "none";
-    frame.style.opacity = "1";
-
-    // Force focus so typing works
-    setTimeout(() => {
-      frame.focus();
-      try {
-        frame.contentWindow.focus();
-      } catch(e) {}
-    }, 300);
-  };
-
-  section.scrollIntoView({ behavior: "smooth" });
+/* ===== OPEN IN NEW TAB ===== */
+function launchNewTab(url) {
+  window.open(url, "_blank");
 }
 
+/* ===== EMBEDDED FULLSCREEN ===== */
 function launchFullscreen(url) {
-  const frame = document.getElementById("client-frame");
   const section = document.getElementById("client-section");
+  const frame = document.getElementById("client-frame");
   const loader = document.getElementById("loading-screen");
 
   section.style.display = "block";
@@ -150,15 +134,32 @@ function launchFullscreen(url) {
       } catch(e) {}
     }, 300);
   };
+
+  section.scrollIntoView({ behavior: "smooth" });
 }
 
+/* ===== FORCE F4 TO EXIT FULLSCREEN ===== */
+document.addEventListener("keydown", function(e) {
+  if (e.key === "F4") {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    }
+  }
+});
+
+/* ===== CLOSE CLIENT ===== */
 function closeClient() {
   const section = document.getElementById("client-section");
   const frame = document.getElementById("client-frame");
 
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  }
+
   frame.src = "";
   section.style.display = "none";
 }
+
 </script>
 
 </body>
