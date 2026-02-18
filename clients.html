@@ -30,7 +30,6 @@
         <p>Official Client</p>
 
         <div class="button-group">
-
           <button class="launch-btn"
             onclick="launchClient('https://eaglercrafthub.github.io/assets/clients/EaglercraftX_1.8_u53_Offline_Signed.html')">
             Launch
@@ -41,25 +40,20 @@
             Fullscreen
           </button>
 
-          <!-- FIXED DOWNLOAD BUTTON -->
           <a class="download-btn"
              href="https://eaglercrafthub.github.io/assets/clients/EaglercraftX_1.8_u53_Offline_Signed.html"
              download>
             Download
           </a>
-
         </div>
       </div>
 
-     
       <div class="client-card">
         <h3>Starlike Client</h3>
         <span class="version-badge">1.8.8</span>
         <p>Unofficial Client</p>
-      
-      
-      <div class="button-group">
 
+        <div class="button-group">
           <button class="launch-btn"
             onclick="launchClient('https://eaglercrafthub.github.io/assets/clients/Eaglercraft_IR_StarLikeClient_0.4.2.html')">
             Launch
@@ -70,13 +64,11 @@
             Fullscreen
           </button>
 
-          <!-- FIXED DOWNLOAD BUTTON -->
           <a class="download-btn"
              href="https://eaglercrafthub.github.io/assets/clients/Eaglercraft_IR_StarLikeClient_0.4.2.html"
              download>
             Download
           </a>
-
         </div>
       </div>
 
@@ -84,7 +76,7 @@
   </div>
 
   <!-- CLIENT VIEWER -->
-  <div id="client-section">
+  <div id="client-section" style="display:none;">
     <div class="viewer-header">
       <span>Client Running</span>
       <button onclick="closeClient()" class="close-btn">Close</button>
@@ -95,7 +87,16 @@
       <span>Loading Client...</span>
     </div>
 
-    <iframe id="client-frame"></iframe>
+    <!-- UPGRADED IFRAME -->
+    <iframe 
+      id="client-frame"
+      allow="fullscreen"
+      allowfullscreen
+      sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-popups"
+      tabindex="0"
+      style="opacity:0;">
+    </iframe>
+
   </div>
 
   <div class="footer">© 2026 Eclix</div>
@@ -114,6 +115,14 @@ function launchClient(url) {
   frame.onload = () => {
     loader.style.display = "none";
     frame.style.opacity = "1";
+
+    // Force focus so typing works
+    setTimeout(() => {
+      frame.focus();
+      try {
+        frame.contentWindow.focus();
+      } catch(e) {}
+    }, 300);
   };
 
   section.scrollIntoView({ behavior: "smooth" });
@@ -122,12 +131,24 @@ function launchClient(url) {
 function launchFullscreen(url) {
   const frame = document.getElementById("client-frame");
   const section = document.getElementById("client-section");
+  const loader = document.getElementById("loading-screen");
 
   section.style.display = "block";
+  loader.style.display = "flex";
+  frame.style.opacity = "0";
   frame.src = url;
 
   frame.onload = () => {
-    frame.requestFullscreen?.();
+    loader.style.display = "none";
+    frame.style.opacity = "1";
+
+    setTimeout(() => {
+      frame.requestFullscreen?.();
+      frame.focus();
+      try {
+        frame.contentWindow.focus();
+      } catch(e) {}
+    }, 300);
   };
 }
 
