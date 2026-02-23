@@ -9,13 +9,41 @@
   font-family: Arial, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* ========================= */
 /* BODY */
 /* ========================= */
 
 body {
-  background: #0d1117;
+  background:
+    radial-gradient(circle at 20% 20%, #0f1a2e, #0d1117 40%),
+    radial-gradient(circle at 80% 80%, #001f2f, transparent 50%),
+    #0d1117;
   color: white;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* animated ambient glow */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0,255,255,0.05), transparent 60%);
+  animation: slowFloat 18s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes slowFloat {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* ========================= */
@@ -27,14 +55,23 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 15px 40px;
-  background: #111827;
-  border-bottom: 2px solid #00ffff;
+  background: rgba(17, 24, 39, 0.75);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,255,255,0.3);
+  box-shadow: 0 0 25px rgba(0,255,255,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .top-bar img.logo {
   height: 48px;
-  transition: 0.2s ease;
-  filter: drop-shadow(0 0 6px rgba(0, 255, 255, 0.5));
+  transition: 0.3s ease;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.6));
+}
+
+.top-bar img.logo:hover {
+  transform: scale(1.05);
 }
 
 .top-bar ul {
@@ -46,11 +83,12 @@ body {
 .top-bar ul li {
   cursor: pointer;
   font-weight: bold;
-  transition: 0.2s ease;
+  transition: 0.3s ease;
 }
 
 .top-bar ul li:hover {
   color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
 }
 
 .discord-btn {
@@ -58,13 +96,15 @@ body {
   color: black;
   padding: 8px 16px;
   text-decoration: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-weight: bold;
-  transition: 0.2s ease;
+  transition: 0.3s ease;
+  box-shadow: 0 0 15px rgba(0,255,255,0.4);
 }
 
 .discord-btn:hover {
   background: white;
+  transform: translateY(-2px);
 }
 
 /* ========================= */
@@ -79,13 +119,24 @@ body {
 .hero-logo {
   width: 150px;
   margin-bottom: 20px;
-  filter: drop-shadow(0 0 12px rgba(0, 255, 255, 0.6));
+  filter: drop-shadow(0 0 18px rgba(0, 255, 255, 0.7));
+  transition: 0.4s ease;
+}
+
+.hero-logo:hover {
+  transform: scale(1.08) rotate(2deg);
 }
 
 .site-title {
   font-size: 3rem;
   margin-bottom: 10px;
   text-shadow: 0 0 10px #00ffff;
+  animation: glowPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  from { text-shadow: 0 0 10px #00ffff; }
+  to { text-shadow: 0 0 30px #00ffff; }
 }
 
 .site-subtitle {
@@ -106,18 +157,19 @@ body {
 }
 
 .nav-card {
-  background: #1f2937;
+  background: rgba(31, 41, 55, 0.8);
+  backdrop-filter: blur(10px);
   border-radius: 18px;
+  border: 1px solid rgba(0,255,255,0.15);
   text-decoration: none;
   color: white;
-  transition: 0.25s ease;
-
+  transition: 0.3s ease;
   width: 260px;
   height: 200px;
-
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
 .nav-card img {
@@ -128,30 +180,32 @@ body {
 }
 
 .nav-card:hover {
-  transform: translateY(-6px);
-  background: #273549;
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 0 35px rgba(0, 255, 255, 0.6);
+  border: 1px solid rgba(0,255,255,0.6);
 }
 
 .nav-card:hover img {
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 
 /* ========================= */
 /* CLIENTS PAGE */
 /* ========================= */
 
-/* Center the entire clients page content */
 .page-content {
   max-width: 1200px;
   margin: 80px auto 0 auto;
   padding: 0 20px;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .page-title {
   font-size: 2.5rem;
   margin-bottom: 50px;
+  animation: glowPulse 3s ease-in-out infinite alternate;
 }
 
 .clients-grid {
@@ -163,18 +217,21 @@ body {
 }
 
 .client-card {
-  background: #1f2937;
+  background: rgba(31, 41, 55, 0.8);
+  backdrop-filter: blur(12px);
   padding: 30px;
-  border-radius: 14px;
-  width: 320px; /* slightly wider */
+  border-radius: 16px;
+  width: 320px;
   min-height: 240px;
-  transition: 0.25s ease;
+  transition: 0.3s ease;
+  border: 1px solid rgba(0,255,255,0.15);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
 .client-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
-  background: #273549;
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
+  border: 1px solid rgba(0,255,255,0.6);
 }
 
 .client-card h3 {
@@ -196,6 +253,7 @@ body {
   border-radius: 12px;
   font-size: 12px;
   margin-bottom: 10px;
+  box-shadow: 0 0 10px rgba(0,255,255,0.6);
 }
 
 .button-group {
@@ -205,7 +263,6 @@ body {
   flex-wrap: wrap;
 }
 
-/* make anchor identical to button */
 .download-btn {
   display: inline-block;
   text-align: center;
@@ -215,12 +272,14 @@ body {
 .launch-btn,
 .download-btn,
 .fullscreen-btn {
-  padding: 9px 16px;
-  border-radius: 6px;
+  padding: 10px 18px;
+  border-radius: 8px;
   border: none;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .launch-btn {
@@ -228,8 +287,9 @@ body {
   color: black;
 }
 
-.launch-btn:hover {
-  background: white;
+.fullscreen-btn {
+  background: #00c8d6;
+  color: black;
 }
 
 .download-btn {
@@ -237,17 +297,33 @@ body {
   color: white;
 }
 
+.launch-btn:hover,
+.fullscreen-btn:hover,
 .download-btn:hover {
-  background: #4b5563;
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(0,255,255,0.7);
 }
 
-.fullscreen-btn {
-  background: #00c8d6;
-  color: black;
+/* shimmer */
+.launch-btn::after,
+.fullscreen-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-25deg);
 }
 
-.fullscreen-btn:hover {
-  background: #00f0ff;
+.launch-btn:hover::after,
+.fullscreen-btn:hover::after {
+  animation: shimmer 0.8s forwards;
+}
+
+@keyframes shimmer {
+  to { left: 125%; }
 }
 
 /* ========================= */
@@ -258,9 +334,11 @@ body {
   display: none;
   margin: 60px auto 0 auto;
   max-width: 1000px;
-  background: #0c1624;
-  border-radius: 12px;
-  border: 2px solid #00f0ff;
+  background: rgba(12, 22, 36, 0.9);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(0,255,255,0.4);
+  box-shadow: 0 0 50px rgba(0,255,255,0.3);
   padding-bottom: 30px;
   animation: fadeIn 0.4s ease;
 }
@@ -274,8 +352,8 @@ body {
   color: #00f0ff;
   font-weight: 600;
   font-size: 18px;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
 .close-btn {
@@ -290,6 +368,7 @@ body {
 
 .close-btn:hover {
   background: #ff2e2e;
+  transform: scale(1.05);
 }
 
 #loading-screen {
@@ -332,6 +411,7 @@ body {
   font-size: 0.9rem;
   color: #6b7280;
   text-align: center;
+  opacity: 0.7;
 }
 
 /* ========================= */
@@ -345,75 +425,4 @@ body {
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
-}
-
-/* ========================= */
-/* SAFE VISUAL ENHANCEMENTS */
-/* (No Dependency Changes)  */
-/* ========================= */
-
-/* Smooth overall page fade */
-body {
-  animation: pageFade 0.6s ease-out;
-}
-
-@keyframes pageFade {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Subtle depth glow behind nav cards */
-.nav-card::after {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: 20px;
-  background: radial-gradient(circle at center, rgba(0,255,255,0.15), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-}
-
-.nav-card:hover::after {
-  opacity: 1;
-}
-
-/* Subtle depth glow behind client cards */
-.client-card::after {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: 18px;
-  background: radial-gradient(circle at center, rgba(0,255,255,0.12), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-}
-
-.client-card:hover::after {
-  opacity: 1;
-}
-
-/* Slight glass enhancement without transform conflicts */
-.nav-card,
-.client-card,
-#client-section {
-  backdrop-filter: blur(14px);
-}
-
-/* Make viewer section feel more alive */
-#client-section {
-  box-shadow:
-    0 0 50px rgba(0,255,255,0.3),
-    inset 0 0 30px rgba(0,255,255,0.05);
-}
-
-/* Footer subtle divider line */
-.footer::before {
-  content: "";
-  display: block;
-  width: 60%;
-  height: 1px;
-  margin: 0 auto 15px auto;
-  background: linear-gradient(to right, transparent, rgba(0,255,255,0.4), transparent);
 }
